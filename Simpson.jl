@@ -1,7 +1,7 @@
 function Simpson(f, a, b, c, d, n, m)
     h = (b - a) / n
-    k = (c - d) / m
-    S = 0
+    k = (d - c) / m
+    S = 0.0
     for i = 0:n
         if i == 0 || i == n
             α = 1
@@ -18,7 +18,7 @@ function Simpson(f, a, b, c, d, n, m)
             else
                 δ = 4
             end
-        S = S + α * δ * f(a + i * h, c + j * k)
+        S = S + (α * δ * f((a + i * h), (c + j * k)))
         end
     end
     I = ((h * k) / 9) * S
