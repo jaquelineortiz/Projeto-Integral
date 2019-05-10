@@ -18,7 +18,7 @@ function Simpson(f, a, b, c, d, n, m)
             else
                 δ = 4
             end
-        S = S + (α * δ * f((a + i * h), (c + j * k)))
+            S = S + (α * δ * f((a + i * h), (c + j * k)))
         end
     end
     I = ((h * k) / 9) * S
