@@ -11,9 +11,7 @@ function Simpson(f, a, b, c, d, n, m)
             α = 4 * k(a + i * h) / 3
         end
         for j = 0:m
-            if j == 0
-                δ = 1
-            elseif j == m
+            if j == 0 || j == m
                 δ = 1
             elseif mod(j,2) == 0
                 δ = 2
@@ -21,7 +19,7 @@ function Simpson(f, a, b, c, d, n, m)
                 δ = 4
             end
         xi = a + i * h
-        yj(xi) = c(xi) + j * k(xi)
+        yj = c(xi) + j * k(xi)
         S = S + (α * δ * f(xi, yj))
         end
     end
