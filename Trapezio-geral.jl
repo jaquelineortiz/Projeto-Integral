@@ -8,7 +8,7 @@ function Trapezio(f, a, b, c, d, m, n)
         else
             α = 2 * k(a + i * h)
         end
-        for j = 0:n
+        for j = 0:m
             if j == 0 || j == m
                 δ = 1
             else
