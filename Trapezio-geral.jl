@@ -4,9 +4,9 @@ function Trapezio(f, a, b, c, d, m, n)
     S = 0.0
     for i = 0:n
         if i == 0 || i == n
-            α = 1 * k(a + i * h)
+            α = 1 * k(a + i * h) / 2
         else
-            α = 2 * k(a + i * h)
+            α = 2 * k(a + i * h) / 2
         end
         for j = 0:m
             if j == 0 || j == m
@@ -19,6 +19,6 @@ function Trapezio(f, a, b, c, d, m, n)
         S = S + (α * δ) * f(xi, yj)
         end
     end
-    I = ((h / 3) * S)
+    I = ((h / 2) * S)
     return I
 end
