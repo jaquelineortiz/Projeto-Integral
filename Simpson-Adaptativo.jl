@@ -28,7 +28,7 @@ function simpson_adaptivo_recursivo(f, a, b, c, d, ϵ, I)
     if abs(I - V1 - V2 - V3 - V4) <= 15 * ϵ
         return V1 + V2 + V3 + V4
     else
-        return (simpson_adaptivo_recursivo(f, a, i, c, j, ϵ/2, V1) + simpson_adaptivo_recursivo(f, i, b, c, j, ϵ/2, V2)
-                + simpson_adaptivo_recursivo(f, a, i, j, d, ϵ/2, V3) + simpson_adaptivo_recursivo(f, i, b, j, d, ϵ/2, V4))
+        return (simpson_adaptivo_recursivo(f, a, i, c, j, ϵ/4, V1) + simpson_adaptivo_recursivo(f, i, b, c, j, ϵ/4, V2)
+                + simpson_adaptivo_recursivo(f, a, i, j, d, ϵ/4, V3) + simpson_adaptivo_recursivo(f, i, b, j, d, ϵ/4, V4))
     end
 end
