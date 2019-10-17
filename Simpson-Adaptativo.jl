@@ -1,21 +1,25 @@
-function simpson(f, a, b, c, d)
+include("estrutura.jl")
+
+function simpson(f :: FuncaoComCache, a, b, c, d)
     h = (b - a) / 2
     k = (d - c) / 2
     α = (a + b) / 2
     β = (c + d) / 2
-    P1 = f(a, c) + f(b, c) + f(a, d) + f(b, d)
+    P1 = obj_val(f, a, c) + f(b, c) + f(a, d) + f(b, d)
     P2 = f(α, c) + f(a , β) + f(b, β) + f(α, d)
     P3 = f(α, β)
-    return (h * k) * (P1 + 4 * P2 + 16 * P3)
+    return (h * k) * (P1 + 4 * P2 + 16 * P3) / 9
 end
 
-function simpson_adaptivo(f, a, b, c, d, ϵ)
+simpson_adaptivo(f, args...; kwargs...) =
+    simpson_adaptivo(FuncaoComCache(f), args...; kwargs...)
+
+function simpson_adaptivo(f :: FuncaoComCache, a, b, c, d; ϵ = 1e-8)
     I = simpson(f, a, b, c, d)
     return simpson_adaptivo_recursivo(f, a, b, c, d, ϵ, I)
 end
 
-
-function simpson_adaptivo_recursivo(f, a, b, c, d, ϵ, I)
+function simpson_adaptivo_recursivo(f :: FuncaoComCache, a, b, c, d, ϵ, I)
     i = (a + b) / 2
     j = (c + d) / 2
     
