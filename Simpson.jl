@@ -1,4 +1,4 @@
-function Simpson(f, a, b, c, d, n, m)
+function Simpson(f :: FuncaoComCache, a, b, c, d, n, m)
     h = (b - a) / n
     k = (d - c) / m
     S = 0.0
@@ -18,7 +18,7 @@ function Simpson(f, a, b, c, d, n, m)
             else
                 δ = 4
             end
-            S = S + (α * δ * f((a + i * h), (c + j * k)))
+            S = S + (α * δ * obj_val(f, (a + i * h), (c + j * k)))
         end
     end
     I = ((h * k) / 9) * S
