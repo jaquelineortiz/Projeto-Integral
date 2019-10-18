@@ -5,9 +5,9 @@ function simpson(f :: FuncaoComCache, a, b, c, d)
     k = (d - c) / 2
     α = (a + b) / 2
     β = (c + d) / 2
-    P1 = obj_val(f, a, c) + f(b, c) + f(a, d) + f(b, d)
-    P2 = f(α, c) + f(a , β) + f(b, β) + f(α, d)
-    P3 = f(α, β)
+    P1 = obj_val(f, a, c) + obj_val(f, b, c) + obj_val(f, a, d) + obj_val(f, b, d)
+    P2 = obj_val(f, α, c) + obj_val(f, a , β) + obj_val(f, b, β) + obj_val(f, α, d)
+    P3 = obj_val(f, α, β)
     return (h * k) * (P1 + 4 * P2 + 16 * P3) / 9
 end
 
