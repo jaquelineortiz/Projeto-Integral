@@ -9,7 +9,7 @@ VI = (exp(0.5) - 1) * (1 - exp(-0.5))
 
 NF, Eps = Int[], Float64[]
 
-for ϵ in 2.0 .^ (-2:1:30)
+for ϵ in 2.0 .^ (-2:-1:-30)
     F = FuncaoComCache(f) # Escolhe alguma f antes
     I = simpson_adaptivo(f, a, b, c, d, ϵ, VI)
     push!(Eps, ϵ)
