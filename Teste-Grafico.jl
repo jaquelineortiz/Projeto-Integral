@@ -1,21 +1,21 @@
 include("Simpson-Adaptativo.jl")
 include("Simpson.jl")
-#include estrutura?
+include("estrutura.jl")
 
-for ϵ = 3.0 .^ (-2:-1:-30)
-    F = função com cache?
-    SA = simpson_adaptivo(f, a, b, c, d, ϵ)   #usocomCache???
-    nf = lenght(F)
-    guarda(NF, ϵ) #função tem guardado?
-end
-scatter(nf, ϵ, xaxis=:log)
+f = f(x, y) = exp(y - x)
+a = c = 0
+b = d = 0.5
+VI = (exp(0.5) - 1) * (1 - exp(-0.5))
 
-#Calculo Simpson Repetido
-for n = 3:2:101
-    for m = 3:2:101
-    SR = Simpson(f, a, b, c, d, n, m)    #usocomCache???
-    erro = abs(SR - I)
-    guarda_erro = #mesma funçao?
-    end
+NF, Eps = Int[], Float64[]
+
+for ϵ in 2.0 .^ (-2:1:30)
+    F = FuncaoComCache(f) # Escolhe alguma f antes
+    I = simpson_adaptivo(f, a, b, c, d, ϵ, VI)
+    push!(Eps, ϵ)
+    push!(NF, length(F))
+
+    #coloco os mesmos passos pra Simpson Repetido aqui?
 end
-scatter
+scatter(NF, Eps, xaxis=:log, yaxis=:log, lab=:"Simpson-Adaptivo")
+
