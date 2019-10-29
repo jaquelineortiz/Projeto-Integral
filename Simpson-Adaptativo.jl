@@ -28,9 +28,9 @@ function simpson_adaptivo_recursivo(f :: FuncaoComCache, a, b, c, d, ϵ, I)
     V3 = simpson(f, a, i, j, d) #S([a, (a+b)/2]; [(c+d)/2, d])
     V4 = simpson(f, i, b, j, d) #S([(a+b)/2, b]; [(c+d)/2,d])
 
-
-    if abs(I - V1 - V2 - V3 - V4) <= 15 * ϵ
-        return V1 + V2 + V3 + V4
+    δ = I - V1 - V2 - V3 - V4
+    if abs(δ) <= 15 * ϵ
+        return V1 + V2 + V3 + V4 - δ / 15
     else
         return (simpson_adaptivo_recursivo(f, a, i, c, j, ϵ/4, V1) + simpson_adaptivo_recursivo(f, i, b, c, j, ϵ/4, V2)
                 + simpson_adaptivo_recursivo(f, a, i, j, d, ϵ/4, V3) + simpson_adaptivo_recursivo(f, i, b, j, d, ϵ/4, V4))

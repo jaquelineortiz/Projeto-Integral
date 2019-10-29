@@ -1,4 +1,10 @@
 function Simpson(f :: FuncaoComCache, a, b, c, d, n, m)
+    if n % 2 == 1
+        n += 1
+    end
+    if m % 2 == 1
+        m += 1
+    end
     h = (b - a) / n
     k = (d - c) / m
     S = 0.0
